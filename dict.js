@@ -157,7 +157,7 @@ const askTranslation = dict => {
 	const rightWord = pickRandomKey( dict );
 	console.log( dict[ rightWord ] );
 	rl.question('Translate into English: ', answer => {
-		if ( answer === rightWord ) {
+		if ( answer.toUpperCase() === rightWord.toUpperCase() ) {
 			console.log('Right!')
 		} else {
 			console.log(`Incorrect! \n Correct answer is: '${rightWord}'`)
