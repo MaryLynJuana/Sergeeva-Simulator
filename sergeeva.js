@@ -51,7 +51,7 @@ const addNewWords = dict => {
 			console.clear();
 			return
 		}
-			if (eng, ukr) {
+			if (eng && ukr) {
 				dict[eng] = ukr;
 				fs.writeFile('./words.json', JSON.stringify(dict), err => {
 					if (err) throw err
@@ -60,7 +60,6 @@ const addNewWords = dict => {
 			} else menu(dict)
 		});
 	});
-	
 };
 
 const deleteWord = dict => {
@@ -91,7 +90,31 @@ Enter the uncorrected variant: `, old => {
 		console.log(`\x1b[36mNow enter the correct variant in English and in Ukrainian\x1b[0m`);
 		return addNewWords(dict);
 	})
-}
+};
+
+const commands = {
+			
+	'add': dict => {
+		addNewWords(dict)
+	},
+	'cor': dict => {
+		correctWord(dict)
+	},
+	'del': dict => {
+		deleteWord(dict)
+    },
+	'Shemsedinov': () => {
+		console.log(`\x1b[38mVSEH NA PERERABOTKU\x1b[1m`);
+		rl.close()
+	},
+	'start': dict => {
+		askTranslation(dict)
+	},
+	'xx': () => {
+		rl.close();
+		console.clear();	
+	},
+};
 
 const menu = dict => {
 	console.clear();
@@ -104,28 +127,10 @@ To delete a word from the dictionary, type 'del'
 To return to this menu, type 'menu'
 To cancel the program, type 'xx'` );
 	rl.question('Enter a command: ', command => {
-		console.clear();	
-		switch (command) {
-			case 'xx':
-				rl.close();
-				console.clear();
-				return;
-			case 'start':
-				askTranslation(dict);
-				break;
-			case 'add':
-				addNewWords(dict);
-				break;
-			case 'cor':
-				correctWord(dict);
-				break;
-			case 'del':
-				deleteWord(dict);
-				break;
-			case 'Shemsedinov':
-				console.log(`\x1b[38mVSEH NA PERERABOTKU\x1b[1m`);
-				rl.close()
-			
+		console.clear();
+		if (command in commands) commands[command](dict);
+        else {
+			menu(dict)
 		}
 	})
 };
