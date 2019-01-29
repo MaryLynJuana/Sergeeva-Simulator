@@ -1,0 +1,19 @@
+{
+  "name": "sergeeva-simulator",
+  "version": "1.0.0",
+  "description": "Interactive vocabulary tester",
+  "main": "sergeeva.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaryLynJuana/Sergeeva-Simulator.git"
+  },
+  "author": "Mary Juana mary_juana@ukr.net",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaryLynJuana/Sergeeva-Simulator/issues"
+  },
+  "homepage": "https://github.com/MaryLynJuana/Sergeeva-Simulator#readme"
+}
